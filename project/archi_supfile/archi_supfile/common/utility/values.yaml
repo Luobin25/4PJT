@@ -1,0 +1,32 @@
+# Default values for musimap-common.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+cert-manager:
+  replicaCount: 1
+  clusterResourceNamespace: default
+  rbac:
+    create: true
+  ingressShim:
+    enabled: true
+    defaultIssuerName: "letsencrypt-prod"
+    defaultIssuerKind: ClusterIssuer
+
+external-dns:
+  sources:
+    - ingress
+  domainFilters: 
+    - lmaj.tk.
+  txtOwnerId: "external-dns-owner"
+  rbac:
+    create: true
+    apiVersion: v1
+
+nginx-ingress:
+  controller:
+    kind: Deployment
+    replicaCount: 1
+    publishService:
+      enabled: true
+  rbac:
+    create: true

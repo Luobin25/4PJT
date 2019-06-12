@@ -1,0 +1,20 @@
+dependencies:
+- name: cert-manager
+  version: 0.3.1
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  alias: certmanager
+- name: external-dns
+  version: 0.6.1
+  repository: https://kubernetes-charts.storage.googleapis.com/
+- name: nginx-ingress
+  version: 0.20.1
+  repository: https://kubernetes-charts.storage.googleapis.com/
+- name: heapster
+  version: 0.3.0
+  repository: https://kubernetes-charts.storage.googleapis.com/
+- name: kubernetes-dashboard
+  version: 0.6.8
+  repository: https://kubernetes-charts.storage.googleapis.com/
+- name: openebs
+  version: 0.5.5
+  repository: https://kubernetes-charts.storage.googleapis.com/
