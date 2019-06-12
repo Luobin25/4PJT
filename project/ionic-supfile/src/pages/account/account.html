@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Account
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      My informations
+    </ion-list-header>
+    <ion-item (click)="showPrompt('username', currentUser.username)" >
+      <ion-icon name='bicycle' item-start></ion-icon>
+      Username
+      <ion-note item-end>
+        {{currentUser.username}}
+      </ion-note>
+    </ion-item>
+    <ion-item (click)="showPrompt('email', currentUser.email)">
+      <ion-icon name='at' item-start></ion-icon>
+      Email
+      <ion-note item-end>
+        {{currentUser.email}}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Storage used
+    </ion-list-header>
+    <ion-item>
+      <ion-range disabled [(ngModel)]="print_used">
+        <ion-icon range-left>
+          <ion-badge item-end>{{used}}</ion-badge>
+        </ion-icon>
+        <ion-icon range-right>
+          <ion-badge item-end>{{currentUser.storage_max}}</ion-badge>
+        </ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+  <button ion-button color="secondary" full (click)="vip()">VIP</button>
+  <button ion-button ion-button full (click)="logout()">Logout</button>
+  <p (click)="terms()">Terms and Condition.</p>
+
+
+</ion-content>

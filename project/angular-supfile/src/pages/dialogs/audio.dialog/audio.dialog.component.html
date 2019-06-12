@@ -1,0 +1,9 @@
+<h5 mat-dialog-title id="title">Online Listener:</h5>
+<mat-dialog-content>
+  <audio controls="controls">
+    <source src={{getLink()}} type="audio/mp3" />
+  </audio>
+</mat-dialog-content>
+<mat-dialog-actions id="audio_buttons">
+  <button mat-button mat-dialog-close class="audio_buttons">Quit</button>
+</mat-dialog-actions>

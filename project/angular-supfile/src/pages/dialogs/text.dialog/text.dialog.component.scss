@@ -1,0 +1,26 @@
+div {
+  white-space: pre;
+  display: block;
+  word-break: break-all;
+  word-wrap: break-word;
+  width: 500px;
+  height: 200px;
+}
+
+#title {
+  font-family: "Arial Rounded MT Bold";
+  font-weight: bolder;
+  font-size: 20px;
+  margin-top: 2%;
+}
+
+#text_buttons {
+  margin-left: 40%;
+  margin-top: 3%;
+}
+
+.text_buttons {
+  background-color: #DDDDDD;
+  font-family: "Arial Rounded MT Bold";
+  font-weight: bolder;
+}

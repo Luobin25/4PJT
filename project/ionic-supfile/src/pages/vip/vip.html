@@ -1,0 +1,33 @@
+<!--
+  Generated template for the VipPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Become Vip</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1>You wanna buy more storage</h1>
+  <h3>Thanks you</h3>
+  <h5>All the Supfile's team wish to say you thanks you for your support.</h5>
+  You will get {{warmth}} Go for {{warmth * 0.10}} €
+
+  <ion-item>
+    <ion-range min="100" max="2000" step="100" snaps="true" [(ngModel)]="warmth" color="danger">
+      <ion-icon range-left name="partly-sunny"></ion-icon>
+      <ion-icon range-right color="danger" name="nuclear"></ion-icon>
+    </ion-range>
+  </ion-item>
+  <button ion-button full>Buy !</button>
+
+
+
+
+</ion-content>

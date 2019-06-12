@@ -1,0 +1,79 @@
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <dl class="docs">
+      <dd><a href="/main">All Resources</a></dd>
+      <dd><a href="/main?fileType=picture">Pictures</a></dd>
+      <dd><a href="/main?fileType=video">Videos</a></dd>
+      <dd><a href="/main?fileType=doc">Docs</a></dd>
+      <dd><a href="/main?fileType=audio">Audio</a></dd>
+      <dd><a href="/main">Others</a></dd>
+    </dl>
+      <!--value and 12.0G should be replaced by getCapacityInfo()-->
+    <mat-progress-bar mode="determinate" value="{{currentUser.storage_used / 30 * 100}}"></mat-progress-bar>
+    <p id="proportion">{{currentUser.storage_used *1073741824 | volumeConverter}}/{{currentUser.storage_max}}G</p>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div>
+  <div id="manipulation">
+    <mat-button-toggle-group *ngIf="list.selectedOptions.selected.length == 0">
+      <button mat-raised-button class="btn_manipulation" (click)="openNewFolderDialog()">New Folder</button>
+      <button mat-raised-button class="btn_manipulation" (click)="openUploadDialog()">Upload</button>
+      <button mat-raised-button class="btn_manipulation" (click)="openSaveDialog()">Save</button>
+    </mat-button-toggle-group>
+
+    <mat-button-toggle-group *ngIf="list.selectedOptions.selected.length != 0 &&
+      !list.selectedOptions.selected[0].value.mime_type">
+      <button mat-raised-button class="btn_manipulation" (click)="openRenameDialog()">Rename</button>
+      <button mat-raised-button class="btn_manipulation" (click)="downloadFile()">Download</button>
+      <button mat-raised-button class="btn_manipulation" (click)="shareFile()">Share</button>
+    </mat-button-toggle-group>
+
+    <mat-button-toggle-group *ngIf="list.selectedOptions.selected.length != 0 && list.selectedOptions.selected[0].value.mime_type">
+      <button mat-raised-button class="btn_manipulation" (click)="openMoveDialog()">Move</button>
+      <button mat-raised-button class="btn_manipulation" (click)="openRenameDialog()">Rename</button>
+      <button mat-raised-button class="btn_manipulation" (click)="deleteFile()">Delete</button>
+      <button mat-raised-button class="btn_manipulation" (click)="downloadFile()">Download</button>
+      <button mat-raised-button class="btn_manipulation" (click)="shareFile()">Share</button>
+    </mat-button-toggle-group>
+
+
+
+    <form>
+      <input type="text" placeholder="Find resources by name" (change)="search($event.target.value)"/>
+    </form>
+  </div>
+
+  <div id="back"><a id="back_link" (click)="goBack()">Back</a><span> | Current Location: {{fileService.currentLocation}}</span></div>
+
+  <mat-selection-list #list>
+    <h3 mat-subheader>
+      <span id="head1">Resources</span>
+      <span id="head2">Size</span>
+      <span id="head3">Latest Modification</span>
+    </h3>
+
+    <mat-list-option *ngFor="let resource of resources; last as last" [value]="resource">
+      <h4 mat-line >
+        <div *ngIf="!resource.size; else falseTemplate">
+          <mat-icon >folder</mat-icon>
+          <span class="folder_name">
+            <a class="folder-link" [routerLink]="['/main', resource._id ]" (click)="recordLocation(resource.name)">{{ resource.name }}</a>
+          </span>
+          <span class="folder_size">-</span>
+        </div>
+        <ng-template #falseTemplate >
+          <div>
+            <mat-icon >note</mat-icon>
+            <span class="folder_name" (click)="display(resource)">{{ resource.name }}</span>
+            <span class="folder_size">{{ resource.size | volumeConverter }}</span>
+          </div>
+        </ng-template>
+      </h4>
+      <mat-divider></mat-divider>
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+

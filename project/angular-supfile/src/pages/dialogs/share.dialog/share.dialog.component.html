@@ -1,0 +1,10 @@
+
+<h2 mat-dialog-title id="title">There is link of shared resource:</h2>
+<mat-dialog-content>
+  <textarea id="id">{{share_link}}</textarea>
+</mat-dialog-content>
+<mat-dialog-actions id="share_buttons">
+  <button mat-button [mat-dialog-close]="true" class="share_buttons" ngxClipboard [cbContent]="share_link">Copy</button>
+  <button mat-button mat-dialog-close class="share_buttons">Cancel</button>
+</mat-dialog-actions>
+

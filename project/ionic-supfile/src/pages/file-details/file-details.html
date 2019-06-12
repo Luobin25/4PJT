@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> {{fileDetail.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-fab top right edge>
+    <button (click)="download()" ion-fab mini>
+      <ion-icon name="download"></ion-icon>
+    </button>
+  </ion-fab>
+    <img src="{{getLink()}}" (click)="download()">
+
+    <ion-card-content>
+      <p>      Size : {{fileDetail.size/10000000}}Go</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+
+        <button ion-button icon-left clear small (click)="rename(fileDetail.name)">
+          <ion-icon name="create"></ion-icon>
+          Rename
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="share(fileDetail.location)">
+          <ion-icon name="share" item-start></ion-icon>
+          Share
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="delete(fileDetail._id)">
+          <ion-icon name="trash" item-start></ion-icon>
+          Delete
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+
+</ion-content>

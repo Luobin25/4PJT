@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">SupFile</span>
+      </div>
+    </header>
+    <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+      <header class="demo-drawer-header">
+        <img src="../../assets/images/logo.png">
+        <div class="demo-avatar-dropdown">
+          <span *ngIf="currentUser">{{currentUser.username}}</span>
+        </div>
+      </header>
+      <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+        <a class="mdl-navigation__link" routerLink="/main" routerLinkActive="active">
+          <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">apps</i>Home
+        </a>
+        <a class="mdl-navigation__link" routerLink="/about" routerLinkActive="active">
+          <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>About
+        </a>
+        <a class="mdl-navigation__link" routerLink="/account" routerLinkActive="active">
+          <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Account
+        </a>
+        <a class="mdl-navigation__link" routerLink="/login" routerLinkActive="active" *ngIf="!isLogged">
+          <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">center_focus_strong</i>Login / Register
+        </a>
+        <a class="mdl-navigation__link" href="#" (click)="logout()" *ngIf="isLogged">
+          <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">exit_to_app</i>Logout
+        </a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content mdl-color--grey-100">
+      <div class="mdl-grid demo-content">
+        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

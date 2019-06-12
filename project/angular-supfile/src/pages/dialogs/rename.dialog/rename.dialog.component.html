@@ -1,0 +1,8 @@
+<h2 mat-dialog-title id="title">Please input the new name:</h2>
+<mat-dialog-content>
+  <input matInput type="text" placeholder="Input link here" id="new_name"  [(ngModel)]="newFileName" name="newFileName"/>
+</mat-dialog-content>
+<mat-dialog-actions id="rename_buttons">
+  <button mat-button [mat-dialog-close]="true" matTooltip="Click when making sure !" class="rename_buttons" (click)="rename()">OK</button>
+  <button mat-button mat-dialog-close class="rename_buttons">Cancel</button>
+</mat-dialog-actions>

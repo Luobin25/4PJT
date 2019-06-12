@@ -1,0 +1,79 @@
+<div id="loginComponent">
+  <h2>Please login or create a new account</h2>
+  <mat-tab-group>
+    <mat-tab label="Login">
+      <div style="display:flex;">
+        <div style="margin-left: 30px;">
+          <form name="formLogin" (ngSubmit)="fL.form.valid && login()" #fL="ngForm" novalidate>
+            <br/>
+            <div class="group" [ngClass]="{ 'has-error': fL.submitted && !emailLogin.valid }">
+              <input type="email" class="form-control input-form" name="emailLogin" [(ngModel)]="modelLogin.email" #emailLogin="ngModel"
+                required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label class="label">Email</label>
+              <div *ngIf="fL.submitted && !emailLogin.valid" class="help-block">email is required</div>
+            </div>
+            <div class="group" [ngClass]="{ 'has-error': fL.submitted && !passwordLogin.valid }">
+              <input type="password" class="form-control input-form" name="passwordLogin" [(ngModel)]="modelLogin.password" #passwordLogin="ngModel"
+                required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label class="label">Password</label>
+              <div *ngIf="fL.submitted && !passwordLogin.valid" class="help-block">Password is required</div>
+              <p id="errorMessage"></p>
+            </div>
+            <div class="form-group">
+              <button [disabled]="loadingLogin" class="btn btn-primary button buttonGrey">Login</button>
+              <img *ngIf="loadingLogin" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+              />
+            </div>
+          </form>
+        </div>
+        <div style="border-left: 3px solid grey; margin-left: 50px; padding-left: 50px;">
+          <h4>Or connect with</h4>
+          <button id="glogin" class=" button buttonGrey">Google</button>
+          <button id="fblogin" class=" button buttonGrey" (click)="onLoginClickFacebook()">Facebook</button>
+          <img *ngIf="loadingFacebook" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+          />
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Register">
+      <div>
+        <form name="formSignUp" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+          <br/>
+          <div class="form-group group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <input type="email" class="form-control input-form" name="email" [(ngModel)]="modelSignUp.email" #email="ngModel" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label class="label">Email</label>
+            <div *ngIf="f.submitted && !email.valid" class="help-block">email is required</div>
+          </div>
+          <div class="form-group group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <input type="text" class="form-control input-form" name="username" [(ngModel)]="modelSignUp.username" #username="ngModel"
+              required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label class="label">Username</label>
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+          </div>
+          <div class="form-group group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <input type="password" class="form-control input-form" name="password" [(ngModel)]="modelSignUp.password" #password="ngModel"
+              required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label class="label">Password</label>
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+          </div>
+          <div class="form-group">
+            <button [disabled]="loadingSignUp" class="btn btn-primary button buttonGrey">Register</button>
+            <img *ngIf="loadingSignUp" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+</div>

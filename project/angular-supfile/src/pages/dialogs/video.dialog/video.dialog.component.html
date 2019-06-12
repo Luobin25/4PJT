@@ -1,0 +1,9 @@
+<h5 mat-dialog-title id="title">Online Viewer:</h5>
+<mat-dialog-content>
+  <video width="800" height="400" controls="controls">
+    <source src="{{getLink()}}" type="video/mp4" />
+  </video>
+</mat-dialog-content>
+<mat-dialog-actions id="video_buttons">
+  <button mat-button mat-dialog-close class="video_buttons">Quit</button>
+</mat-dialog-actions>

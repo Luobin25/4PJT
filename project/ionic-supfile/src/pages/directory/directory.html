@@ -1,0 +1,63 @@
+<ion-header xmlns="http://www.w3.org/1999/html">
+  <ion-navbar>
+    <ion-title>My folders</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-fab top right edge>
+    <button ion-fab mini>
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list>
+      Folder
+      <button (click)="folderComponant()" ion-fab>
+        <ion-icon name="folder"></ion-icon>
+      </button>
+      File
+      <button (click)="addFile()" ion-fab>
+        <ion-icon name="document"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-list>
+    <ion-list-header *ngIf="folders_count != 0">
+      Folders
+      <button ion-button clear (click)="openMenu()">
+        ...
+      </button>
+    </ion-list-header>
+
+    <ion-item ion-item *ngFor="let folder of folders.data" (click)="goToFolder(folder._id)">
+
+      <ion-avatar item-start>
+        <ion-icon name="folder-open"></ion-icon>
+      </ion-avatar>
+      <h2>{{folder.name}}</h2>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header *ngIf="files_count != 0">
+      Files
+    </ion-list-header>
+
+    <ion-item ion-item *ngFor="let file of files.data" (click)="goToFile(file._id)">
+      <ion-avatar item-start>
+        <div *ngIf="file.mime_type == 'image/png' || file.mime_type == 'image/jpeg' || file.mime_type == 'image/gif' ; else elseBlock">
+          <ion-icon name="image"></ion-icon>
+        </div>
+        <!--<ng-template #thenBlock>...</ng-template>-->
+        <ng-template #elseBlock>
+          <ion-icon name="document"></ion-icon>
+        </ng-template>
+      </ion-avatar>
+      <h2>{{file.name}}</h2>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

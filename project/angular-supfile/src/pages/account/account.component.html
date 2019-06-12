@@ -1,0 +1,38 @@
+<h4>Feel free to edit your profile</h4>
+<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    <form name="formSignUp" (ngSubmit)="editUser()">
+        <br/>
+        <div class="form-group group">
+            <input type="email" class="form-control input-form" name="email" [(ngModel)]="modelSignUp.email" #email="ngModel"
+                   required placeholder="{{currentUser['email']}}">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label class="label">Email</label>
+        </div>
+        <div class="form-group group">
+            <input type="text" class="form-control input-form" name="username" [(ngModel)]="modelSignUp.username" #username="ngModel"
+                required placeholder="{{currentUser['username']}}">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label class="label">Username</label>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loadingSignUp" class="btn btn-primary button buttonGrey">Edit</button>
+            <img *ngIf="loadingSignUp" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
+        </div>
+    </form>
+</div>
+
+<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    <h4>Volume Information:</h4>
+    <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+        <use xlink:href="#piechart" mask="url(#piemask)" />
+        <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">{{calcStorage()}}
+            <tspan font-size="0.2" dy="-0.07">%</tspan>
+        </text>
+    </svg>
+</div>
+
+
+
