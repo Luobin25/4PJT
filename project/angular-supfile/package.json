@@ -29,7 +29,7 @@
     "ngx-clipboard": "^11.1.0",
     "ngx-facebook": "^2.4.0",
     "node-sass": "^4.9.0",
-    "npm": "^6.0.0",
+    "npm": "^6.13.4",
     "rxjs": "^6.2.0",
     "zone.js": "^0.8.26"
   },
