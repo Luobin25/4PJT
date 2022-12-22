@@ -16,7 +16,7 @@
     "cors": "^2.8.3",
     "express": "^4.14.0",
     "fs": "0.0.1-security",
-    "jsonwebtoken": "^7.2.1",
+    "jsonwebtoken": "^9.0.0",
     "jszip": "^3.1.5",
     "mkdirp": "^0.5.1",
     "mongoose": "^4.7.2",
